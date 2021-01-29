@@ -311,7 +311,7 @@ class ImageCrawler:
                     shutil.copyfileobj(response.raw, f)
                 result = dst
         except Exception as e:
-            print(e)
+            pass
         return result
 
     def download_from_base64(self, src, target, name):
@@ -325,7 +325,7 @@ class ImageCrawler:
                 f.write(image)
             result = dst
         except Exception as e:
-            print(e)
+            pass
         return result
 
     def start(self, file, target):
@@ -336,7 +336,7 @@ class ImageCrawler:
         for k, u in urls.items():
             crawler.download(u, os.path.join(target, k))
 
-        json.dump(urls, open(os.path.join(target, 'urls.json'), 'w'))
+        json.dump(urls, open(os.path.join(target, 'urls.json'), 'w', encoding='utf-8'), ensure_ascii=False)
 
 
 if __name__ == '__main__':
